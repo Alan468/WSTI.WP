@@ -1,55 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using WSTI.WP.Kompozyt.BaseClasses;
 
 namespace WSTI.WP.Kompozyt
 {
-	public class Chapter : BaseChapter
+	public class Chapter : ChapterComponent
 	{
-		protected List<BaseChapter> chapters = new List<BaseChapter>();
+		protected List<ChapterComponent> chapters = new List<ChapterComponent>();
 
-		public Chapter(string bookTitle) : base(bookTitle)
-		{
-		}
-		public Chapter(string bookTitle, List<BaseChapter> newChapters) : base(bookTitle)
+		public Chapter(string bookTitle, List<ChapterComponent> newChapters) : base(bookTitle)
 		{
 			chapters.AddRange(newChapters);
 		}
 
-		public void Add(BaseChapter chapter)
-		{
-			chapters.Add(chapter);
-		}
+		public void Add(ChapterComponent chapter) => chapters.Add(chapter);
 
-		public override void PrintTitle()
+		public override void PrintTitle(string prefix = "")
 		{
-			Console.WriteLine(Title);
-		}
+			Console.WriteLine($"{prefix} {Title}");
 
-		public void TableOfContent(List<int> indexes = null)
-		{
-			if (indexes == null)			
-				indexes = new List<int>() { 1 };
-			
-			PrintTitle();
-
+			var index = 1;
 			foreach (var chapter in chapters)
-			{
-				Console.Write($"{new string('\t', indexes.Count)}{string.Join('.', indexes)} ");
-
-				if (chapter is Chapter nbc)
-				{
-					indexes.Add(1);
-					nbc.TableOfContent(indexes);
-					indexes.RemoveAt(indexes.Count - 1);
-				}
-				else
-				{
-					chapter.PrintTitle();
-				}
-				indexes[indexes.Count - 1]++;
-			}
+				chapter.PrintTitle($"\t{prefix}{index++}.");
 		}
 	}
-
 }

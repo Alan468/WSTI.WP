@@ -9,24 +9,29 @@ namespace WSTI.WP.Kompozyt
 	{
 		static void Main()
 		{
-			Console.WriteLine("Hello World!");
-
-			var book = new Chapter("Książka", new List<BaseChapter>()
+			var book = new Chapter("Książka", new List<ChapterComponent>()
 			{
-			new TextChapter("Rozdział pierwszy"),
-			new Chapter("Rozdział drugi", new List<BaseChapter>()
+				new TextChapter("Przedmowa"),
+				new Chapter("Wstęp", new List<ChapterComponent>()
 				{
-				new Chapter("Pierwszy podrozdział", new List<BaseChapter>()
+					new TextChapter("Motywacja"),
+					new TextChapter("Założenia"),
+				}),
+				new Chapter("Rozwinięcie", new List<ChapterComponent>()
+				{
+					new Chapter("Pierwszy podrozdział", new List<ChapterComponent>()
 					{
-					new TextChapter("Kolejny podrozdział"),
-					new TextChapter("Jeszcze jeden podrozdział")
+						new TextChapter("Pierwszy podrozdział pierwszego podrozdziału"),
+						new TextChapter("Drugi podrozdział pierwszego podrozdziału")
 					}),
-				new TextChapter("Drugi podrozdział"),
+					new Chapter("Drugi podrozdział",new List<ChapterComponent>(){
+						new TextChapter("Pierwszy podrozdział drugiego podrozdziału"),
+					}),
 				}),
 				new TextChapter("Zakończenie")
 			});
 
-			book.TableOfContent();
+			book.PrintTitle();
 
 			Console.ReadKey();
 		}
