@@ -9,6 +9,8 @@ namespace WSTI.WP.Kompozyt
 	{
 		static void Main()
 		{
+			Console.WriteLine("Hello World! Alan Biegun!");
+
 			var book = new Chapter("Książka", new List<ChapterComponent>()
 			{
 				new TextChapter("Przedmowa"),

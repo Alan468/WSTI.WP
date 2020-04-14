@@ -4,12 +4,8 @@
 	{
 		protected string Title { get; set; }
 
-		public ChapterComponent(string title)
-		{
-			Title = title;
-		}
+		public ChapterComponent(string title) => Title = title;
 
 		public abstract void PrintTitle(string prefix = "");
 	}
-
 }

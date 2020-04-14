@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using WSTI.WP.Kompozyt.BaseClasses;
 
 namespace WSTI.WP.Kompozyt
@@ -9,10 +8,7 @@ namespace WSTI.WP.Kompozyt
 	{
 		protected List<ChapterComponent> chapters = new List<ChapterComponent>();
 
-		public Chapter(string bookTitle, List<ChapterComponent> newChapters) : base(bookTitle)
-		{
-			chapters.AddRange(newChapters);
-		}
+		public Chapter(string bookTitle, List<ChapterComponent> newChapters) : base(bookTitle) => chapters.AddRange(newChapters);
 
 		public void Add(ChapterComponent chapter) => chapters.Add(chapter);
 
