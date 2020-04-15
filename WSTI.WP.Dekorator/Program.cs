@@ -17,7 +17,10 @@ namespace WSTI.WP.Dekorator
 			Console.Write("Wpisz tagi oddzielone spacją (dozwolone to: em, mark, p, strong): ");
 			var tags = Console.ReadLine();
 			tags = tags.ToLower();
-			var tagList = tags.Split(' ').Distinct().ToList();
+			var tagList = tags.Split(' ')
+								.Distinct()
+								.Where(a => !string.IsNullOrEmpty(a))
+								.ToList();
 
 			IText textHolder = new PlainText(text);
 
